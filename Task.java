@@ -11,6 +11,7 @@ public class Task {
     //An executable command line
     public static String command;
 
+    //Tasks must be created with an input description and an input command
     public Task(String input_desc, String input_comm) {
       description = input_desc;
       command = input_comm;

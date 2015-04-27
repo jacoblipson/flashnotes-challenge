@@ -9,8 +9,9 @@ public class Test {
 		simple_tasks.push(task1);
 		simple_tasks.push(task2);
 		
-		while (TaskQueue.peek_next() != null) {
-		    Task t = TaskQueue.pop();
+		while (simple_tasks.peek_next() != null) {
+		    Task t = simple_tasks.peek_next();
+		    simple_tasks.pop();
 		    System.out.println("Running task " + t.GUID);
 		    t.execute();
 		}
