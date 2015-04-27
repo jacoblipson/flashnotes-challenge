@@ -17,24 +17,38 @@ public class Task {
       command = input_comm;
     }
     
-    //Runs the task's stored command and outputs the results
-    public void execute() {
+    //Runs the task's stored command, creates a TaskResult, and returns the task's exit code
+    public Integer execute() {
+        String trace = "";
+        String output = "";
+        Integer exitVal = null;
+        long startTime = System.nanoTime();
+
         try {
+
           //Runtime allows the application to interface with the environment it runs in
           Process pr = Runtime.getRuntime().exec(command);
-
-          //Receives and outputs the results of the process
+          
           BufferedReader input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
           String line=null;
           while((line=input.readLine()) != null) {
-              System.out.println(line);
+                output += line;
           }
- 
+
           //Receive and print the exit code of the process
-          int exitVal = pr.waitFor();
-          System.out.println("Exited with error code "+exitVal);
+          exitVal = pr.waitFor();
         } catch (Exception e) {
-            e.printStackTrace();
+            //Preserves the exception message thrown in a string
+            CharArrayWriter cw = new CharArrayWriter();
+            PrintWriter w = new PrintWriter(cw);
+            e.printStackTrace(w);
+            w.close();
+            trace = cw.toString();
+        } finally {
+            //Create TaskResult instance
+            long endTime = System.nanoTime();
+            TaskResult result = new TaskResult(GUID, exitVal, output, trace, endTime - startTime);
         }
+        return exitVal;
     }
 }
