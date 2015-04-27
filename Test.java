@@ -13,7 +13,7 @@ public class Test {
 		    Task t = simple_tasks.peek_next();
 		    simple_tasks.pop();
 		    System.out.println("Running task " + t.GUID);
-		    t.execute();
+		    System.out.println(t.execute().output);
 		}
 	}
 

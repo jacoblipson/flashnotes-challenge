@@ -35,7 +35,7 @@ Command - Command line code provided at creation of Task instance
 
 Methods:
 
-execute() - Runs the Task's stored command in the application's environment, outputs the result and exit code to standard output
+execute() - Runs the Task's stored command in the application's environment, creates a TaskResult and returns it
 
 ####TaskQueue
 Members:

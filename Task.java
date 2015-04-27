@@ -18,17 +18,19 @@ public class Task {
     }
     
     //Runs the task's stored command, creates a TaskResult, and returns the task's exit code
-    public Integer execute() {
+    public TaskResult execute() {
         String trace = "";
         String output = "";
         Integer exitVal = null;
         long startTime = System.nanoTime();
+        TaskResult result;
 
         try {
 
           //Runtime allows the application to interface with the environment it runs in
           Process pr = Runtime.getRuntime().exec(command);
           
+          //Stores the command's dump to standard output in a string
           BufferedReader input = new BufferedReader(new InputStreamReader(pr.getInputStream()));
           String line=null;
           while((line=input.readLine()) != null) {
@@ -47,8 +49,8 @@ public class Task {
         } finally {
             //Create TaskResult instance
             long endTime = System.nanoTime();
-            TaskResult result = new TaskResult(GUID, exitVal, output, trace, endTime - startTime);
+            result = new TaskResult(GUID, exitVal, output, trace, endTime - startTime);
         }
-        return exitVal;
+        return result;
     }
 }
