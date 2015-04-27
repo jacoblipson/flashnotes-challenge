@@ -6,7 +6,9 @@ Date: 4/26/2015
 
 Description: An implementation of a First-in, First-out priority queue
 
-Files: Task.java, TaskQueue.java, Test.java
+Files: Task.java, TaskQueue.java, TaskResult.java, Test.java
+
+Status: Task, TaskQueue, and TaskResult are fully implemented. Task's execute method has temporarily been modified to return a TaskResult. TaskResults has not yet been implemented. Task has been thoroughly tested. TaskQueue has been tested. TaskResult has not been tested.
 
 ###To Run:
 1) Clone the repository from Github
